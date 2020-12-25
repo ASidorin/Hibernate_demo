@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Users {
 	
@@ -69,6 +71,7 @@ public class Users {
 	}
 
 
+	@JsonBackReference
 	public Location getLocation() {
 		return location;
 	}

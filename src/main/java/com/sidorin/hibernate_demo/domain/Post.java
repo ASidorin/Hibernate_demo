@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Post {
 	
@@ -43,6 +45,8 @@ public class Post {
 	public void setPostData(LocalDateTime postData) {
 		this.postData = postData;
 	}
+	
+	@JsonBackReference
 	public Users getUsers() {
 		return users;
 	}

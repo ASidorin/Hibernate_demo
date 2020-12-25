@@ -5,9 +5,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sidorin.hibernate_demo.domain.Location;
+import com.sidorin.hibernate_demo.domain.Users;
 import com.sidorin.hibernate_demo.service.LocationService;
 
 
@@ -24,8 +26,18 @@ public class LocationController {
 	}
 
 	@GetMapping("/location/{id}")
-	public Optional<Location> getLocationById(Long id) {
+	public Optional<Location> getLocationById(@PathVariable Long id) {
 		return locationService.findById(id);
+	}
+	
+	@GetMapping("/location/{id}/users")
+	public List<Users> getUsersByLocation(@PathVariable Long id){
+		Optional<Location> location = locationService.findById(id);
+		
+		if(location.isPresent()) {
+			return location.get().getUsers();
+		}
+		return null;
 	}
 
 	

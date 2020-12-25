@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Location {
 
@@ -18,6 +20,23 @@ public class Location {
 	
 	@OneToMany(mappedBy="location")
 	private List<Users> users;
+	
+	
+	
+	
+	@JsonManagedReference
+	public List<Users> getUsers() {
+		return users;
+	}
+
+
+
+	public void setUsers(List<Users> users) {
+		this.users = users;
+	}
+
+
+
 	public Location() {
 		super();
 	}
