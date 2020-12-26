@@ -13,14 +13,22 @@ import com.sidorin.hibernate_demo.repository.UsersRepository;
 public class UsersService {
 	
 	@Autowired
-	private UsersRepository userPerository;
+	private UsersRepository userRepository;
 
 	public List<Users> getAllUsers() {
-		return (List<Users>) userPerository.findAll();
+		return (List<Users>) userRepository.findAll();
 	}
 
 	public Optional<Users> getUserById(Long id) {
-		return userPerository.findById(id);
+		return userRepository.findById(id);
+	}
+
+	public List<Users> getUsersByLocation(Long id) {
+		return userRepository.findByLocationId(id);
+	}
+	
+	public void addUser(Users user) {
+		userRepository.save(user);
 	}
 
 }

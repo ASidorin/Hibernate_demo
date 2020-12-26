@@ -2,6 +2,7 @@ package com.sidorin.hibernate_demo.domain;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -13,6 +14,16 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 public class Users {
 	
+	public Long getLocationid() {
+		return locationid;
+	}
+
+
+	public void setLocationid(Long locationid) {
+		this.locationid = locationid;
+	}
+
+
 	@Id
 	private Long id;
 	
@@ -20,11 +31,14 @@ public class Users {
 	private String lastname;
 	
 	@ManyToOne
-	@JoinColumn(name="location_id")
+	@JoinColumn(name="locationid", insertable=false, updatable=false)
 	private Location location;
-
 	
-	@OneToMany(mappedBy="users")
+	
+	private Long locationid;
+	
+	
+	@OneToMany(mappedBy="user")
 	private List<Post> posts; 
 	
 	public Users() {
@@ -38,6 +52,16 @@ public class Users {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.location = location;
+	}
+	
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 
 

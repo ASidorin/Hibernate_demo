@@ -24,5 +24,14 @@ public class PostService {
 		return postRepository.findById(id);
 	}
 
+	public void addPost(Post post) {
+		postRepository.save(post);
+		
+	}
+
+	public List<Post> getPostByUsers(Long id) {
+		return postRepository.findByUserId(id);
+	}
+
 
 }

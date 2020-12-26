@@ -12,25 +12,29 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 public class Post {
 	
+	
 	@Id
 	private Long id;
 	private LocalDateTime postData;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
-	private Users users;
+	@JoinColumn(name="userid", insertable=false, updatable=false)
+	private Users user;
 	
 	private String details;
+	
+	
+	private Long userid;
 	
 	
 	public Post() {
 		super();
 	}
-	public Post(Long id, LocalDateTime postData, Users users, String details) {
+	public Post(Long id, LocalDateTime postData, Users user, String details) {
 		super();
 		this.id = id;
 		this.postData = postData;
-		this.users = users;
+		this.user = user;
 		this.details = details;
 	}
 	public Long getId() {
@@ -48,10 +52,10 @@ public class Post {
 	
 	@JsonBackReference
 	public Users getUsers() {
-		return users;
+		return user;
 	}
-	public void setUsers(Users users) {
-		this.users = users;
+	public void setUsers(Users user) {
+		this.user = user;
 	}
 	public String getDetails() {
 		return details;
@@ -59,7 +63,12 @@ public class Post {
 	public void setDetails(String details) {
 		this.details = details;
 	}
-	
+	public Long getUserid() {
+		return userid;
+	}
+	public void setUserid(Long userid) {
+		this.userid = userid;
+	}
 	
 
 }
