@@ -2,6 +2,7 @@ package com.sidorin.hibernate_demo.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -18,7 +19,7 @@ public class Location {
 
 	
 	
-	@OneToMany(mappedBy="location")
+	@OneToMany(mappedBy="location", cascade = CascadeType.ALL)
 	private List<Users> users;
 	
 	

@@ -33,5 +33,17 @@ public class PostService {
 		return postRepository.findByUserId(id);
 	}
 
+	public void updatePost(Post post) {
+		postRepository.save(post);
+		
+	}
+
+	public void deletePost(Long id) {
+		postRepository.deleteById(id);
+		
+	}
+	
+	
+
 
 }

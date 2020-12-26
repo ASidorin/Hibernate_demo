@@ -2,8 +2,10 @@ package com.sidorin.hibernate_demo.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,7 +32,7 @@ public class Users {
 	private String firstname;
 	private String lastname;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="locationid", insertable=false, updatable=false)
 	private Location location;
 	
@@ -38,7 +40,7 @@ public class Users {
 	private Long locationid;
 	
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
 	private List<Post> posts; 
 	
 	public Users() {

@@ -3,6 +3,7 @@ package com.sidorin.hibernate_demo.domain;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,7 +18,7 @@ public class Post {
 	private Long id;
 	private LocalDateTime postData;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="userid", insertable=false, updatable=false)
 	private Users user;
 	
